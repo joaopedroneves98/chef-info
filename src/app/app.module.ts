@@ -5,8 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChefListComponent } from './chef-list/chef-list.component';
-import {MatToolbarModule, MatCardModule} from '@angular/material';
+import {MatToolbarModule, MatCardModule, MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatIconModule,
+    FontAwesomeModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule

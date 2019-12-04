@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChefService } from '../chef.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chef-list',
@@ -8,7 +9,11 @@ import { ChefService } from '../chef.service';
 })
 export class ChefListComponent implements OnInit {
 
+  faUser = faUser;
+
   chefs: any = [];
+
+  url = this.chefService.getUrl();
 
   constructor(private chefService: ChefService) { }
 

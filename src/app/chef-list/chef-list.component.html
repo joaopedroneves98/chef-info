@@ -1,8 +1,9 @@
 <div class="content">
+    <p>Content retrieved from: <a href="{{url}}" target="_blank">{{url}}</a></p>
     <mat-card class="example-card" *ngFor="let chef of chefs">
         <mat-card-header>
-            <mat-card-title>{{chef.name}}</mat-card-title>
-            <mat-card-subtitle>{{chef.age}}</mat-card-subtitle>
+            <mat-card-title><fa-icon [icon]="faUser"></fa-icon>&nbsp;{{chef.name}}</mat-card-title>
+            <mat-card-subtitle>Age: {{chef.age}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChefService } from './chef.service';
 
 @Component({
   selector: 'app-root',
