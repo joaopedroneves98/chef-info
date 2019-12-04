@@ -1,0 +1,10 @@
+.example-card {
+    max-width: 400px;
+    margin: 5px;
+  }
+
+.content{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5px;
+}
