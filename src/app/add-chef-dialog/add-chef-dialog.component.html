@@ -1,0 +1,19 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>New Chef</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="form">
+      <p>Name</p>
+      <mat-form-field>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <p>Age</p>
+      <mat-form-field>
+        <input type="number" matInput formControlName="age">
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close color="warn">Cancel</button>
+    <button mat-button [mat-dialog-close]="form.value" type="submit">Submit</button>
+  </div>
+</div>

@@ -1,21 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChefService {
-  devUrl = 'http://localhost:1337/chefs';
-  prodUrl = 'https://restaurant-cms-strapi.herokuapp.com/chefs';
+  devUrl = 'http://localhost:1337/chefs/';
+  prodUrl = 'https://restaurant-cms-strapi.herokuapp.com/chefs/';
 
-  constructor(private http: HttpClient) { }
+  private chefList = new BehaviorSubject<any[]>([]);
 
-  getUrl(){
+  get getChefList() {
+    return this.chefList.asObservable();
+  }
+
+  constructor(private http: HttpClient, private userService: UserService) { }
+
+  getUrl() {
     return isDevMode() ? this.devUrl : this.prodUrl;
   }
 
   getChefs() {
-    return this.http.get(this.getUrl());
+    return this.http.get(this.getUrl()).subscribe((data: any[]) => { this.chefList.next(data); });
+  }
+
+  createChef(chef) {
+    return this.http.post(this.getUrl(), chef, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.userService.token,
+      })
+    });
+  }
+
+  deleteChef(id) {
+    return this.http.delete(this.getUrl() + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.userService.token,
+      })
+    });
   }
 }
