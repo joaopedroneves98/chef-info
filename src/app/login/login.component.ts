@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
@@ -13,20 +13,23 @@ export class LoginComponent implements OnInit {
   loginForm;
 
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UserService,
     public router: Router) {
-    this.loginForm = this.formBuilder.group({
-      email: '',
-      password: ''
-    });
   }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
   }
 
   onSubmit(loginForm) {
     this.userService.login(loginForm.email, loginForm.password);
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.loginForm.controls[controlName].hasError(errorName);
   }
 
 }

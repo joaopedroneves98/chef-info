@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 export interface DialogData {
@@ -16,12 +16,11 @@ export class AddChefDialogComponent implements OnInit {
 
   form: FormGroup;
   constructor(
-    private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddChefDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: DialogData) {
-    this.form = fb.group({
-      name: '',
-      age: '',
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      age: new FormControl('', [Validators.required]),
     });
 
   }
@@ -35,6 +34,10 @@ export class AddChefDialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
   }
 
 }
