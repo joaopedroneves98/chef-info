@@ -24,7 +24,12 @@ export class ChefService {
   }
 
   getChefs() {
-    return this.http.get(this.getUrl()).subscribe((data: any[]) => { this.chefList.next(data); });
+    return this.http.get(this.getUrl(), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.userService.token,
+      })
+    }).subscribe((data: any[]) => { this.chefList.next(data); });
   }
 
   createChef(chef) {

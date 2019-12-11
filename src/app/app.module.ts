@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AddChefComponent } from './add-chef/add-chef.component';
 import { AddChefDialogComponent } from './add-chef-dialog/add-chef-dialog.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AddChefDialogComponent } from './add-chef-dialog/add-chef-dialog.compon
     PageNotFoundComponent,
     HeaderComponent,
     AddChefComponent,
-    AddChefDialogComponent
+    AddChefDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
